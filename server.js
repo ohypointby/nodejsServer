@@ -3,7 +3,15 @@ const fs = require('fs')
 
 http.createServer((request, response) => {
     if (request.url != '/favicon.ico') {
-        fs.readFile('pages/' + request.url + '.html', (err, data) => {
+
+        let name;
+
+        if (request.url == '/') {
+            name = 'index';
+        } else {
+            name = request.url;
+        }
+        fs.readFile('pages/' + name + '.html', (err, data) => {
             response.setHeader('Content-Type', 'text/html');
 
             if (!err) {
