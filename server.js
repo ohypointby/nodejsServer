@@ -28,10 +28,10 @@ function getPage(name, response, statusCode = 200) {
 
     fs.readFile('pages/' + name + '.html', 'utf8', (err, data) => {
         if (!err) {
-            fs.readFile('elems/menu.html', 'utf8', (err, elem) => {
+            fs.readFile('elems/menu.html', 'utf8', (err, menu) => {
                 if (err) throw err;
 
-                data = data.replace(/\{\{menu\}\}/g, elem);
+                data = data.replace(/\{\{menu\}\}/g, menu);
 
                 fs.readFile('elems/footer.html', 'utf8', (err, footer) => {
                     if (err) throw err;

@@ -1,3 +1,7 @@
 footer {
     color:red;
 }
+
+.active {
+    color: red;
+}
