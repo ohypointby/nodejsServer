@@ -19,6 +19,14 @@ http.createServer((request, response) => {
             response.write(data);
             response.end();
         })
+        else if (request.url.endsWith('.jpg')) fs.readFile(request.url.slice(1), (err, data) => {
+            if (err) throw err;
+
+            response.setHeader('Content-Type', 'text/jpg');
+            response.statusCode = 200;
+            response.write(data);
+            response.end();
+        })
         else getPage(request.url, response);
     }   
 }).listen(8000, () => console.log('Server is on')); 

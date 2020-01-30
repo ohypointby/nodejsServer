@@ -5,3 +5,8 @@ footer {
 .active {
     color: red;
 }
+
+img {
+    width: 100%;
+    height: 100%;
+}
