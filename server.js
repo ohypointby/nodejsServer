@@ -3,7 +3,7 @@ const fs = require('fs')
 
 http.createServer((request, response) => {
     if (request.url != '/favicon.ico') {
-        if (request.url.endsWith('.css')) fs.readFile(request.url.slice(1), 'utf8', (err, data) => {
+        if (request.url.endsWith('.css')) fs.readFile('styles/' + request.url.slice(1), 'utf8', (err, data) => {
             if (err) throw err;
 
             response.setHeader('Content-Type', 'text/css');
@@ -11,7 +11,7 @@ http.createServer((request, response) => {
             response.write(data);
             response.end();
         })
-        else if (request.url.endsWith('.js')) fs.readFile(request.url.slice(1), 'utf8', (err, data) => {
+        else if (request.url.endsWith('.js')) fs.readFile('client_scripts/' + request.url.slice(1), 'utf8', (err, data) => {
             if (err) throw err;
 
             response.setHeader('Content-Type', 'text/javascript');
