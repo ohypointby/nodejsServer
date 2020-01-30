@@ -9,12 +9,16 @@ http.createServer((request, response) => {
             if (!err) {
                 response.statusCode = 200;
                 response.write(data);
+                response.end();
             } else {
-                response.statusCode = 404;
-                response.write('<b>Page Not Found</b>');
-            }
+                fs.readFile('pages/404.html', (err, data) => {
+                    if (err) throw err;
 
-            response.end();
+                    response.statusCode = 404;
+                    response.write(data);
+                    response.end();
+                })
+            }
         })
     }   
 }).listen(8000, () => console.log('Server is on')); 
