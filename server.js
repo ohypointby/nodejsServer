@@ -3,7 +3,23 @@ const fs = require('fs')
 
 http.createServer((request, response) => {
     if (request.url != '/favicon.ico') {
-        getPage(request.url, response);
+        if (request.url.endsWith('.css')) fs.readFile(request.url.slice(1), 'utf8', (err, data) => {
+            if (err) throw err;
+
+            response.setHeader('Content-Type', 'text/css');
+            response.statusCode = 200;
+            response.write(data);
+            response.end();
+        })
+        else if (request.url.endsWith('.js')) fs.readFile(request.url.slice(1), 'utf8', (err, data) => {
+            if (err) throw err;
+
+            response.setHeader('Content-Type', 'text/javascript');
+            response.statusCode = 200;
+            response.write(data);
+            response.end();
+        })
+        else getPage(request.url, response);
     }   
 }).listen(8000, () => console.log('Server is on')); 
 
