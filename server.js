@@ -10,6 +10,8 @@ http.createServer((request, response) => {
             response.statusCode = 200;
             response.write(data);
             response.end();
+
+            let promise = new Promise(() => console.log(111))
         })
         else if (request.url.endsWith('.js')) fs.readFile('client_scripts/' +  request.url.slice(1), 'utf8', (err, data) => {
             if (err) throw err;
@@ -18,6 +20,8 @@ http.createServer((request, response) => {
             response.statusCode = 200;
             response.write(data);
             response.end();
+
+            let promise = new Promise(() => console.log(222))
         })
         else if (request.url.endsWith('.jpg')) fs.readFile(request.url.slice(1), (err, data) => {
             if (err) throw err;
@@ -26,9 +30,11 @@ http.createServer((request, response) => {
             response.statusCode = 200;
             response.write(data);
             response.end();
+            
+            let promise = new Promise(() => console.log(333))
         })
         else getPage(request.url, response);
-    }   
+    }
 }).listen(8000, () => console.log('Server is on')); 
 
 function getPage(name, response, statusCode = 200) {
