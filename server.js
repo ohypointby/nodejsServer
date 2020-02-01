@@ -77,7 +77,7 @@ function getPage(name, response, statusCode = 200) {
 function getPageWithPromise(name, response, statusCode = 200) {
     if (name == '/') name = 'index';
 
-    let promiseByContent = new Promise(resolve => {
+    new Promise(resolve => {
         fs.readFile('pages/' + name + '.html', 'utf8', (err, content) => {
             if (!err) resolve(content)
             else {
